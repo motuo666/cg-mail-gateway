@@ -1,0 +1,14 @@
+{
+  "name": "cg-mail-gateway",
+  "version": "1.0.0",
+  "description": "Simple mail gateway for CG Alert using Zoho SMTP.",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.11"
+  }
+}
