@@ -38,18 +38,17 @@ app.post("/send-digest", async (req, res) => {
         .json({ ok: false, error: "missing to/subject/body" });
     }
 
-    const info = await transporter.sendMail({
-      from: process.env.MAIL_FROM || process.env.ZOHO_SMTP_USER,
+    // 🔴 当前阶段：只做测试，不走 SMTP，不连 Zoho
+    console.log("TEST MODE - would send mail", {
       to,
       subject,
-      text,
-      html,
+      hasHtml: !!html,
+      hasText: !!text,
     });
 
-    console.log("Mail sent", to, info.messageId);
-    res.json({ ok: true });
+    return res.json({ ok: true, testOnly: true });
   } catch (e) {
-    console.error("Mail send failed", e);
+    console.error("Mail handler failed", e);
     res.status(500).json({ ok: false, error: String(e) });
   }
 });
